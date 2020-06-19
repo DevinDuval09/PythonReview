@@ -17,5 +17,5 @@ outputLabel = ttk.Label(intEntry,text = "Your entry x 2 =" & domath(intEntry.get
 intEntry.mainloop()
 
 #do some INT math
-def domath(x)
+def domath(x):
 	return x * 2
