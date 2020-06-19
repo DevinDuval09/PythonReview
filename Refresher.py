@@ -8,3 +8,4 @@ intLabel = ttk.Label(intEntry,text = "Enter an integer", font = ("Time Roman",12
 intLabel.pack(side = "left")
 intEnt = ttk.Entry(intEntry, cursor = "dot")
 intEnt.pack(side = "right")
+intEntry.mainloop()
