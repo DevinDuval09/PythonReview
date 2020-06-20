@@ -16,6 +16,9 @@ intEnt.pack(side = "right")
 B1 = ttk.Button(intEntry,text="Quit",command=quit)
 B1.pack(side="bottom")
 
+outputLabel = ttk.Label(intEntry,text="Your number x 2 = ")
+outputLabel.pack()
+
 def press():
 	if len(intEnt.get())>0:
 		x = int(intEnt.get())
@@ -23,12 +26,8 @@ def press():
 		x=0
 
 	y = x*2
-	print(x)
-	print(y)
-	outputLabel = ttk.Label(intEntry,text=str(y))
-	outputLabel.pack()
-	intEntry.update()
-	outputLabel.update()
+	outputLabel.config(text="Your number x 2 = " + str(y))
+	
 
 B2 = ttk.Button(intEntry,text="Calculate",command=press)
 B2.pack()
