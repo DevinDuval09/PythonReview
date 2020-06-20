@@ -2,14 +2,10 @@
 import tkinter as tk
 from tkinter import ttk as ttk
 
-def setOutput(x):
-	if len(intEnt.get()) > 0 :
-		return ttk.Label(intEntry,text="Your entry x 2 =" + str(int(intEnt.get())*2),font=("Time Roman",12))
-	else:
-		return ttk.Label(intEntry,text="Your entry x 2 =0",font=("Time Roman",12))
+
+
 
 #create a popup to input integers
-x=0
 
 intEntry = tk.Tk()
 intEntry.geometry("400x400")
@@ -20,13 +16,24 @@ intEnt.pack(side = "right")
 B1 = ttk.Button(intEntry,text="Quit",command=quit)
 B1.pack(side="bottom")
 
-outputLabel = ttk.Label()
+def press():
+	if len(intEnt.get())>0:
+		x = int(intEnt.get())
+	else:
+		x=0
 
+	y = x*2
+	print(x)
+	print(y)
+	outputLabel = ttk.Label(intEntry,text=str(y))
+	outputLabel.pack()
+	intEntry.update()
+	outputLabel.update()
 
-B2 = ttk.Button(intEntry,text="Calculate",command=setOutput(outputLabel))
+B2 = ttk.Button(intEntry,text="Calculate",command=press)
 B2.pack()
 
-outputLabel.pack()
+
 
 intEntry.mainloop()
 
