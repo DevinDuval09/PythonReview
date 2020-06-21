@@ -1,4 +1,9 @@
 #String manipulation
-import tkinter as tk
-from tkinter import tkk as tkk
+import tkinter
+from tkinter import ttk
+import Popup
 
+def reverseString(text):
+	return text[::-1]
+
+p1 = Popup.Popup("Reverse the string",reverseString)

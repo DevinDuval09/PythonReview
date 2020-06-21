@@ -1,6 +1,6 @@
 #generic dialogue box that will take input
 import tkinter as tk
-from tkinter import tkk as tkk
+from tkinter import ttk as tkk
 
 #make a popup box with an input button, output label, and quit button
 #input: button function, instructions
@@ -22,10 +22,6 @@ class Popup():
 		#output label
 		lblOutput = tkk.Button(self,text="")
 		lblOutput.pack()
-		#action button
-		Baction=tkk.Button(self,text="Do instructions",command=writeout)
-		Baction.pack()
-
 		#function to write output label
 		def writeout():
 			if len(Entry.get()) > 0:
@@ -33,4 +29,10 @@ class Popup():
 				lblOutput.config(text=str(x))
 			else:
 				lblOutput.config(text="")
+
+		#action button
+		Baction=tkk.Button(self,text="Do instructions",command=writeout)
+		Baction.pack()
+
+		self.mainloop()
 
