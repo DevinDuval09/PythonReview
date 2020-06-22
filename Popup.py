@@ -30,6 +30,15 @@ class Popup():
 			else:
 				lblOutput.config(text="")
 
+		def idDatatype():
+			text = Entry.get()
+			if text.isnumberic():
+				return "number"
+			elif text.alpha():
+				return "word"
+			else:
+				return "mix"
+
 		#action button
 		Baction=tkk.Button(self,text="Do instructions",command=writeout)
 		Baction.pack()
