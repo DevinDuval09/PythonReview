@@ -6,4 +6,4 @@ import Popup
 def reverseString(text):
 	return text[::-1]
 
-p1 = Popup.Popup("Reverse the string",reverseString)
+p1 = Popup.Popup("Reverse the string",reverseString,"word")
