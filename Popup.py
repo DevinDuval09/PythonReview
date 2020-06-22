@@ -6,10 +6,10 @@ from tkinter import ttk as tkk
 #input: button function, instructions
 
 class Popup():
-	def __init__(self,instructions,press):
+	def __init__(self,instructions,press,datatype):
 		x = 0
 		self = tk.Tk()
-		self.geometry("200x200")
+		self.geometry("600x200")
 		#label with instructions
 		Instruct = tkk.Label(self,text=instructions,font=("Times Roman",12))
 		Instruct.pack(side="top")
@@ -22,22 +22,37 @@ class Popup():
 		#output label
 		lblOutput = tkk.Button(self,text="")
 		lblOutput.pack()
-		#function to write output label
-		def writeout():
-			if len(Entry.get()) > 0:
-				x = press(Entry.get())
-				lblOutput.config(text=str(x))
-			else:
-				lblOutput.config(text="")
 
+		# id datatype
 		def idDatatype():
 			text = Entry.get()
-			if text.isnumberic():
+			if text.isnumeric() or text.isdecimal():
 				return "number"
-			elif text.alpha():
+			elif text.isalpha():
 				return "word"
 			else:
 				return "mix"
+
+		#function to write output label
+		def writeout():
+			#test datatype of input
+			typ = ""
+			if len(Entry.get()) > 0:
+				typ = idDatatype()
+			else:
+				lblOutput.config(text="Enter a value")
+			#if datatype is correct, do function
+			if (datatype == "number"):
+				try:
+					x = press(float(Entry.get()))
+					lblOutput.config(text=str(x))
+				except:
+					lblOutput.config(text="Please enter a number.")
+			elif (typ == datatype) and (typ != "number"):
+				x = press(Entry.get())
+				lblOutput.config(text=x)
+			else:
+				lblOutput.config(text="Wrong datatype. Please enter a new value.")
 
 		#action button
 		Baction=tkk.Button(self,text="Do instructions",command=writeout)
