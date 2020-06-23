@@ -9,7 +9,7 @@ class Popup():
 	def __init__(self,instructions,press,datatype):
 		x = 0
 		self = tk.Tk()
-		self.geometry("600x200")
+		
 		#label with instructions
 		Instruct = tkk.Label(self,text=instructions,font=("Times Roman",12))
 		Instruct.pack(side="top")
@@ -57,6 +57,8 @@ class Popup():
 		#action button
 		Baction=tkk.Button(self,text="Do instructions",command=writeout)
 		Baction.pack()
+		lblOutput.geometry("")
+		self.geometry("")
 
 		self.mainloop()
 
