@@ -9,6 +9,10 @@ class Popup():
 	def __init__(self,instructions,press,datatype):
 		x = 0
 		self = tk.Tk()
+		w = 400
+		global h
+		h = 200
+		self.geometry("{}x{}".format(w,h))
 		#label with instructions
 		Instruct = tkk.Label(self,text=instructions,font=("Times Roman",12))
 		Instruct.pack(side="top")
@@ -52,7 +56,11 @@ class Popup():
 				lblOutput.config(text=x)
 			else:
 				lblOutput.config(text="Wrong datatype. Please enter a new value.")
-			self.geometry("")
+			self.resizable(height=True,width=False)
+			hAdd=lblOutput.winfo_height()
+			global h
+			h = h + hAdd
+			self.geometry("{}x{}".format(w,h))
 
 		#action button
 		Baction=tkk.Button(self,text="Do instructions",command=writeout)
