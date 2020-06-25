@@ -11,6 +11,7 @@ class Popup():
 		self = tk.Tk()
 		w = 400
 		global h
+		global lblH
 		h = 200
 		self.geometry("{}x{}".format(w,h))
 		#label with instructions
@@ -25,13 +26,14 @@ class Popup():
 		#output label
 		lblOutput = tkk.Button(self,text="")
 		lblOutput.pack()
+		lblH = lblOutput.winfo_height()
 
 		# id datatype
 		def idDatatype():
 			text = Entry.get()
 			if text.isnumeric() or text.isdecimal():
 				return "number"
-			elif text.isalpha():
+			elif text.isprintable():
 				return "word"
 			else:
 				return "mix"
@@ -57,9 +59,13 @@ class Popup():
 			else:
 				lblOutput.config(text="Wrong datatype. Please enter a new value.")
 			self.resizable(height=True,width=False)
-			hAdd=lblOutput.winfo_height()
 			global h
-			h = h + hAdd
+			print("in main:" + str(self.winfo_height()) + " output " + str(lblOutput.winfo_height()) + " h " + str(h))
+			if self.winfo_height() <= 200:
+				h = h + lblH + Baction.winfo_height()
+			else:
+				h = 200 + lblOutput.winfo_height() + Baction.winfo_height()
+			print("out main:" + str(self.winfo_height()) + " output " + str(lblOutput.winfo_height()) + " h " + str(h))
 			self.geometry("{}x{}".format(w,h))
 
 		#action button
