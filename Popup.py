@@ -11,7 +11,6 @@ class Popup():
 		self = tk.Tk()
 		w = 400
 		global h
-		global lblH
 		h = 200
 		self.geometry("{}x{}".format(w,h))
 		#label with instructions
@@ -24,9 +23,11 @@ class Popup():
 		Bquit=tkk.Button(self,text="Quit",command=quit)
 		Bquit.pack(side="bottom")
 		#output label
-		lblOutput = tkk.Button(self,text="")
-		lblOutput.pack()
-		lblH = lblOutput.winfo_height()
+		lblOutput = tkk.Label(self,text="")
+
+		#action button
+		Baction=tkk.Button(self,text="Do instructions")
+		Baction.pack()
 
 		# id datatype
 		def idDatatype():
@@ -58,19 +59,23 @@ class Popup():
 				lblOutput.config(text=x)
 			else:
 				lblOutput.config(text="Wrong datatype. Please enter a new value.")
+			lblOutput.pack()
+			lblOutput.update()
+			self.update()
 			self.resizable(height=True,width=False)
 			global h
-			print("in main:" + str(self.winfo_height()) + " output " + str(lblOutput.winfo_height()) + " h " + str(h))
-			if self.winfo_height() <= 200:
-				h = h + lblH + Baction.winfo_height()
+			print(lblOutput.winfo_height())
+			if self.winfo_height() <= (lblOutput.winfo_height() + Baction.winfo_height() + Bquit.winfo_height()+Instruct.winfo_height()+Entry.winfo_height())+100:
+				h = (lblOutput.winfo_height() + Baction.winfo_height() + Bquit.winfo_height()+Instruct.winfo_height()+Entry.winfo_height())+100
+			elif self.winfo_height() > (lblOutput.winfo_height() + Baction.winfo_height() + Bquit.winfo_height()+Instruct.winfo_height()+Entry.winfo_height() + 100):
+				h = (lblOutput.winfo_height() + Baction.winfo_height() + Bquit.winfo_height()+Instruct.winfo_height()+Entry.winfo_height())
 			else:
-				h = 200 + lblOutput.winfo_height() + Baction.winfo_height()
-			print("out main:" + str(self.winfo_height()) + " output " + str(lblOutput.winfo_height()) + " h " + str(h))
+				pass
 			self.geometry("{}x{}".format(w,h))
+			print(lblOutput.winfo_height())
+			print(self.winfo_height())
 
-		#action button
-		Baction=tkk.Button(self,text="Do instructions",command=writeout)
-		Baction.pack()
+		Baction.config(command=writeout)
 		
 
 		self.mainloop()
