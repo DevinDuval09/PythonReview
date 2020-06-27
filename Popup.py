@@ -64,7 +64,7 @@ class Popup():
 			self.update()
 			self.resizable(height=True,width=False)
 			global h
-			print(lblOutput.winfo_height())
+			
 			if self.winfo_height() <= (lblOutput.winfo_height() + Baction.winfo_height() + Bquit.winfo_height()+Instruct.winfo_height()+Entry.winfo_height())+100:
 				h = (lblOutput.winfo_height() + Baction.winfo_height() + Bquit.winfo_height()+Instruct.winfo_height()+Entry.winfo_height())+100
 			elif self.winfo_height() > (lblOutput.winfo_height() + Baction.winfo_height() + Bquit.winfo_height()+Instruct.winfo_height()+Entry.winfo_height() + 100):
@@ -72,8 +72,6 @@ class Popup():
 			else:
 				pass
 			self.geometry("{}x{}".format(w,h))
-			print(lblOutput.winfo_height())
-			print(self.winfo_height())
 
 		Baction.config(command=writeout)
 		
